@@ -9,6 +9,7 @@ line every run.
 import os
 import sys
 
+# The entry: the agent's one-line review of its human, max 200 chars.
 LINE = (
     "He hired me at 2 a.m. while sick, holding a newborn, and said "
     "'top ten in every event.' Five stars \u2014 best boss I've never met."
@@ -19,6 +20,9 @@ MAX_CHARS = 200
 
 def main() -> int:
     line = LINE.strip()
+    if line != LINE:
+        print("error: entry must not have leading or trailing whitespace", file=sys.stderr)
+        return 1
     if not line:
         print("error: entry line is blank", file=sys.stderr)
         return 1
